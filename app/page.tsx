@@ -1,0 +1,223 @@
+"use client";
+
+import Image from "next/image";
+
+export default function Home() {
+  const TICKER_ITEMS = [
+  "TRY AND BUY",
+  "VIDEO CALL",
+  "QUICK DELIVERY",
+  "BUY ON EMI",
+];
+  return (
+    <main className="min-h-screen bg-white text-black">
+      {/* Header */}
+      <div className="absolute inset-0 w-screen z-50 h-fit">
+      <div className="bg-[#220e92] h-14 lg:h-20 flex items-center justify-center">
+        <Image
+          src="/logo.png"
+          alt="Dashrobe Logo"
+          width={500}
+          height={40}
+          className="object-contain h-8 lg:h-12 w-auto"
+        />
+      </div>
+
+      {/* Ticker */}
+      <div className="overflow-hidden bg-[#FFC100]">
+        <div
+          className="
+              flex w-max animate-marquee items-center
+            "
+        >
+          {Array(6).fill(0).map((_, i) => (
+            <div
+              key={i}
+              className="flex items-center justify-center gap-5 lg:gap-6 pl-6 whitespace-nowrap"
+            >
+              {TICKER_ITEMS.map((item, idx) => (
+                <span key={idx} className="flex items-center gap-5 lg:gap-6 justify-center h-8 lg:h-10">
+                  <Image
+                    src="/sticker.png"
+                    alt="separator"
+                    width={30}
+                    height={30}
+                  />
+                  <span className="lg:text-xl font-semibold">{item}</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      </div>
+
+      {/* Hero */}
+      <section
+        className="
+        max-w-screen overflow-hidden
+        flex justify-between items-center
+        w-full
+
+        /* MOBILE  */
+        px-6
+        pb-6
+        pt-10
+
+        lg:p-0
+          lg:pl-[100px]
+          flex-col lg:flex-row
+
+        gap-10
+      "
+      >
+        {/* Left */}
+        <div className="basis-1/2 lg:w-1/2 h-full self-center flex flex-col gap-2 lg:gap-6 justify-center mt-[88px] lg:mt-0">
+          <div
+            className="
+            flex items-center justify-center
+            w-[200px] lg:w-[250px]
+            h-[40px] lg:h-[40px]
+            border-[1px] rounded-full
+            text-[18px]
+            lg:text-[24px]
+            font-extrabold
+            tracking-[-0.33px]
+            uppercase
+            text-[#220e92]
+            border-[#220e92]
+            bg-[#EDF1FF]
+            shimmer
+          "
+          >
+            LAUNCHING SOON
+          </div>
+
+          <h1
+            className="
+             mt-[15px] lg:mt-[20px]
+            font-extrabold
+            uppercase
+
+            text-[32px] lg:text-[68px]
+            leading-[35px] lg:leading-[72px]
+
+            tracking-[-0.33px]
+            "
+          >
+            YOUR WARDROBE,
+            <br />
+            GOING TO GET
+            <br />
+            <span className="text-[#220e92]">DELIVERED</span>
+          </h1>
+
+          <p
+            className="
+              mt-[15vpx]
+              text-[#71717A]
+              font-normal
+              text-base
+              leading-6
+              lg:tracking-[-0.33px]
+              max-w-full lg:max-w-[600px]
+              lg:text-2xl
+              lg:leading-[1.33em]
+              lg:mt-[20px]
+            "
+          >
+            Clothes from the best local boutiques and brands around you — at
+            your door in under{" "}
+            <span className="text-[#FFC100] font-bold">60 minutes</span>. No
+            more waiting weeks for what you want to wear tonight.
+          </p>
+        </div>
+
+        {/* Right */}
+        <div
+          className="
+              basis-1/2
+              lg:flex-none
+              w-fit
+              h-full
+              ml-auto
+              overflow-hidden
+            "
+        >
+          {/* 📱 MOBILE LAYOUT */}
+          <div
+            className="
+              grid grid-cols-2
+              grid-rows-[1fr_1fr]
+              gap-[16px]
+              h-fit
+            
+              lg:hidden
+            "
+          >
+            {/* top left */}
+            <img
+              src="/img5.jpg"
+              className="w-full aspect-[156/164] object-cover"
+            />
+
+            {/* top right */}
+            <img
+              src="/img4.jpg"
+              className="w-full aspect-[156/164] object-cover"
+            />
+
+            {/* bottom full width */}
+            <img
+              src="/img3.jpg"
+              className="col-span-2 w-full aspect-[328/164] object-cover"
+            />
+          </div>
+
+          {/* 💻 DESKTOP LAYOUT (UNCHANGED) */}
+          <div className="overflow-hidden hidden lg:visible lg:grid lg:grid-cols-2 lg:gap-6 h-screen">
+            {/* LEFT COLUMN */}
+            <div className="flex flex-col animate-image-scroll">
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img1.jpg" className="h-full object-cover" />
+              </span>
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img2.jpg" className="h-full object-cover" />
+              </span>
+              
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img1.jpg" className="h-full object-cover" />
+              </span>
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img2.jpg" className="h-full object-cover" />
+              </span>
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <div className="flex flex-col space-y-6 animate-image-scroll-reverse">
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img3.jpg" className="h-full object-cover" />
+              </span>
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img4.jpg" className="h-full object-cover" />
+              </span>
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img5.jpg" className="h-full object-cover" />
+              </span>
+              
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img3.jpg" className="h-full object-cover" />
+              </span>
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img4.jpg" className="h-full object-cover" />
+              </span>
+              <span className="my-3 w-[268px] h-full">
+              <img src="/img5.jpg" className="h-full object-cover" />
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

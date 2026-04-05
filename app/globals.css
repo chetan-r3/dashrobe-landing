@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ticker */
+@keyframes marquee {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+.animate-scroll {
+  animation: scroll 12s linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scroll 12s linear infinite reverse;
+}
+
+/* IMAGE SCROLL ONLY */
+@keyframes image-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes image-scroll-reverse {
+  0% {
+    transform: translate3d(0, -50%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* apply animations */
+.animate-image-scroll {
+  animation: image-scroll 16s linear infinite;
+  will-change: transform;
+}
+
+.animate-image-scroll-reverse {
+  animation: image-scroll-reverse 20s linear infinite;
+  will-change: transform;
+}
+/* Shimmer */
+.shimmer {
+  background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Scroll */
+@keyframes scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.animate-scroll {
+  animation: scroll 12s linear infinite;
+}
+.animate-scroll-reverse {
+  animation: scroll 12s linear infinite reverse;
+}
+
+/* Disable on mobile */
+@media (max-width: 768px) {
+  .animate-scroll,
+  .animate-scroll-reverse {
+    animation: none;
+  }
+}
