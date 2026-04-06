@@ -2,61 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ticker — pure CSS marquee (translate3d) */
+/* Ticker */
 @keyframes marquee {
-  0% {
-    transform: translate3d(-50%, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 .animate-marquee {
-  animation: marquee 52s linear infinite;
-  text-rendering: geometricPrecision;
-}
-
-/*
- * Bitmap inside a transform animation: without its own layer, WebKit/Blink often
- * flashes at loop edges (texture upload / tiling). Sticker uses bg — same idea.
- */
-.ticker-sticker {
-  width: 30px;
-  height: 30px;
-  flex-shrink: 0;
-  background-image: url("/sticker.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-img.anim-raster,
-.anim-raster-wrap img {
-  display: block;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-/* Compositor hint on clip boxes — avoids many prod-only flashes vs isolation + infinite transforms */
-.clip-motion-safe {
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
+  animation: marquee 20s linear infinite;
 }
 
 @keyframes scroll {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, -50%, 0);
-  }
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
 }
 
 .animate-scroll {
@@ -67,66 +25,48 @@ img.anim-raster,
   animation: scroll 12s linear infinite reverse;
 }
 
+/* IMAGE SCROLL ONLY */
 @keyframes image-scroll {
-  from {
+  0% {
     transform: translate3d(0, 0, 0);
   }
-  to {
+  100% {
     transform: translate3d(0, -50%, 0);
   }
 }
 
 @keyframes image-scroll-reverse {
-  from {
+  0% {
     transform: translate3d(0, -50%, 0);
   }
-  to {
+  100% {
     transform: translate3d(0, 0, 0);
   }
 }
 
-.animate-image-scroll,
-.animate-image-scroll-reverse {
-  transform: translate3d(0, 0, 0);
-}
-
+/* apply animations */
 .animate-image-scroll {
   animation: image-scroll 16s linear infinite;
+  will-change: transform;
 }
 
 .animate-image-scroll-reverse {
   animation: image-scroll-reverse 20s linear infinite;
+  will-change: transform;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none;
-    transform: none;
-    will-change: auto;
-  }
-
-  .animate-image-scroll,
-  .animate-image-scroll-reverse {
-    animation: none;
-    transform: none;
-    will-change: auto;
-  }
-
-  img.anim-raster,
-  .anim-raster-wrap img,
-  .ticker-sticker {
-    transform: none;
-    -webkit-transform: none;
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
-  }
-}
-/* Shimmer — alternate avoids a hard reset each cycle */
+/* Shimmer */
 .shimmer {
-  background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
+  background: linear-gradient(
+    90deg,
+    rgb(237, 241, 255) 25%,
+    rgb(220, 220, 255) 50%, /* slightly lighter for shine */
+    rgb(237, 241, 255) 75%
+  );
   background-size: 200% 100%;
-  animation: shimmer 2.5s linear infinite alternate;
+  animation: shimmer 2s infinite;
+  border-radius: 100px; /* match your rounded-full */
 }
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -134,6 +74,22 @@ img.anim-raster,
   100% {
     background-position: 200% 0;
   }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Scroll */
+@keyframes scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.animate-scroll {
+  animation: scroll 12s linear infinite;
+}
+.animate-scroll-reverse {
+  animation: scroll 12s linear infinite reverse;
 }
 
 /* Disable on mobile */

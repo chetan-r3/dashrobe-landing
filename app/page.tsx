@@ -75,7 +75,7 @@ export default async function Home() {
       >
         {/* Left */}
         <div className="basis-1/2 lg:w-1/2 h-full self-center flex flex-col gap-2 lg:gap-6 justify-center mt-[88px] lg:mt-0">
-          <div className="flex items-center justify-center w-[200px] lg:w-[250px] h-[40px] lg:h-[40px] border-[1px] rounded-full text-[18px] lg:text-[24px] font-extrabold tracking-[-0.33px] uppercase text-[#220e92] border-[#220e92] bg-[#EDF1FF] shimmer">
+          <div className="flex items-center justify-center w-[188px] lg:w-[250px] h-[32px] lg:h-[40px] border-[1px] rounded-full text-[18px] lg:text-[24px] font-extrabold tracking-[-0.33px] uppercase text-[#220e92] border-[#220e92] bg-[#EDF1FF] shimmer">
             LAUNCHING SOON
           </div>
 
@@ -95,7 +95,7 @@ export default async function Home() {
               text-base
               leading-6
               lg:tracking-[-0.33px]
-              max-w-full lg:max-w-[600px]
+              max-w-[330px] lg:max-w-[600px]
               lg:text-2xl
               lg:leading-[1.33em]
               lg:mt-[20px]
