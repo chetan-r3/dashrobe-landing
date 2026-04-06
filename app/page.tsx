@@ -20,14 +20,16 @@ export default async function Home() {
       {/* Header */}
       <div className="absolute inset-0 w-screen z-50 h-fit">
         <div className="bg-[#220e92] h-14 lg:h-20 flex items-center justify-center">
-          <Image
-            src="/logo.png"
-            alt="Dashrobe Logo"
-            width={500}
-            height={40}
-            priority
-            className="object-contain h-8 lg:h-12 w-auto"
-          />
+          <div className="anim-raster-wrap flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              alt="Dashrobe Logo"
+              width={500}
+              height={40}
+              priority
+              className="object-contain h-8 lg:h-12 w-auto"
+            />
+          </div>
         </div>
 
         {/* Ticker */}
@@ -126,39 +128,119 @@ export default async function Home() {
 
           {/* DESKTOP LAYOUT */}
           <div className="overflow-hidden hidden lg:visible lg:grid lg:grid-cols-2 lg:gap-6 h-screen">
-            <div className="flex flex-col animate-image-scroll">
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img1.jpg" className="h-full object-cover" />
+            <div className="flex flex-col animate-image-scroll pointer-events-none">
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img1.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img2.jpg" className="h-full object-cover" />
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img2.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img1.jpg" className="h-full object-cover" />
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img1.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img2.jpg" className="h-full object-cover" />
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img2.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
             </div>
 
-            <div className="flex flex-col animate-image-scroll-reverse">
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img3.jpg" className="h-full object-cover" />
+            <div className="flex flex-col animate-image-scroll-reverse pointer-events-none">
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img3.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img4.jpg" className="h-full object-cover" />
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img4.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img5.jpg" className="h-full object-cover" />
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img5.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img3.jpg" className="h-full object-cover" />
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img3.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img4.jpg" className="h-full object-cover" />
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img4.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
-              <span className="my-3 w-[268px] h-full">
-                <img src="/img5.jpg" className="h-full object-cover" />
+              <span className="my-3 block w-[268px] h-full overflow-hidden">
+                <img
+                  src="/img5.jpg"
+                  alt=""
+                  width={268}
+                  height={520}
+                  decoding="sync"
+                  loading="eager"
+                  className="anim-raster h-full w-full object-cover"
+                />
               </span>
             </div>
           </div>

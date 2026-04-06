@@ -17,7 +17,10 @@
   text-rendering: geometricPrecision;
 }
 
-/* One bitmap decode shared across cells */
+/*
+ * Bitmap inside a transform animation: without its own layer, WebKit/Blink often
+ * flashes at loop edges (texture upload / tiling). Sticker uses bg — same idea.
+ */
 .ticker-sticker {
   width: 30px;
   height: 30px;
@@ -26,6 +29,19 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+img.anim-raster,
+.anim-raster-wrap img {
+  display: block;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* Compositor hint on clip boxes — avoids many prod-only flashes vs isolation + infinite transforms */
@@ -94,6 +110,15 @@
     animation: none;
     transform: none;
     will-change: auto;
+  }
+
+  img.anim-raster,
+  .anim-raster-wrap img,
+  .ticker-sticker {
+    transform: none;
+    -webkit-transform: none;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
   }
 }
 /* Shimmer — alternate avoids a hard reset each cycle */
