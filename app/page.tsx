@@ -31,7 +31,7 @@ export default async function Home() {
         </div>
 
         {/* Ticker */}
-        <div className="overflow-hidden bg-[#FFC100]">
+        <div className="clip-motion-safe overflow-hidden bg-[#FFC100]">
           <div className="flex w-max animate-marquee items-center pointer-events-none antialiased">
             {/* Enough repeats so track width ≥ viewport; -50% loop needs an even count of identical segments */}
             {Array(6)
@@ -59,7 +59,7 @@ export default async function Home() {
       {/* Hero */}
       <section
         className="
-        max-w-screen overflow-hidden
+        clip-motion-safe max-w-screen overflow-hidden
         flex justify-between items-center
         w-full
         px-6
@@ -125,7 +125,7 @@ export default async function Home() {
           </div>
 
           {/* DESKTOP LAYOUT */}
-          <div className="clip-motion-safe overflow-hidden hidden lg:visible lg:grid lg:grid-cols-2 lg:gap-6 h-screen">
+          <div className="overflow-hidden hidden lg:visible lg:grid lg:grid-cols-2 lg:gap-6 h-screen">
             <div className="flex flex-col animate-image-scroll">
               <span className="my-3 w-[268px] h-full">
                 <img src="/img1.jpg" className="h-full object-cover" />

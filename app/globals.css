@@ -14,9 +14,6 @@
 
 .animate-marquee {
   animation: marquee 52s linear infinite;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
   text-rendering: geometricPrecision;
 }
 
@@ -31,9 +28,10 @@
   background-size: contain;
 }
 
-/* Isolates stacking context so overflow clipping + animated children repaint cleanly (prod GPU paths) */
+/* Compositor hint on clip boxes — avoids many prod-only flashes vs isolation + infinite transforms */
 .clip-motion-safe {
-  isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 @keyframes scroll {
@@ -73,10 +71,7 @@
 
 .animate-image-scroll,
 .animate-image-scroll-reverse {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
-  /* Avoid always-on will-change — it can cause layer thrash / flicker with overflow:hidden in production */
 }
 
 .animate-image-scroll {
@@ -101,15 +96,19 @@
     will-change: auto;
   }
 }
-/* Shimmer */
+/* Shimmer — alternate avoids a hard reset each cycle */
 .shimmer {
   background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
   background-size: 200% 100%;
-  animation: shimmer 2s infinite;
+  animation: shimmer 2.5s linear infinite alternate;
 }
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* Disable on mobile */
