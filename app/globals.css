@@ -2,19 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ticker */
+/* Ticker — pure CSS marquee (translate3d) */
 @keyframes marquee {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 52s linear infinite;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  text-rendering: geometricPrecision;
+}
+
+/* One bitmap decode shared across cells */
+.ticker-sticker {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  background-image: url("/sticker.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Isolates stacking context so overflow clipping + animated children repaint cleanly (prod GPU paths) */
+.clip-motion-safe {
+  isolation: isolate;
 }
 
 @keyframes scroll {
-  0% { transform: translateY(-50%); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
 }
 
 .animate-scroll {
@@ -25,34 +53,53 @@
   animation: scroll 12s linear infinite reverse;
 }
 
-/* IMAGE SCROLL ONLY */
 @keyframes image-scroll {
-  0% {
+  from {
     transform: translate3d(0, 0, 0);
   }
-  100% {
+  to {
     transform: translate3d(0, -50%, 0);
   }
 }
 
 @keyframes image-scroll-reverse {
-  0% {
+  from {
     transform: translate3d(0, -50%, 0);
   }
-  100% {
+  to {
     transform: translate3d(0, 0, 0);
   }
 }
 
-/* apply animations */
+.animate-image-scroll,
+.animate-image-scroll-reverse {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  /* Avoid always-on will-change — it can cause layer thrash / flicker with overflow:hidden in production */
+}
+
 .animate-image-scroll {
   animation: image-scroll 16s linear infinite;
-  will-change: transform;
 }
 
 .animate-image-scroll-reverse {
   animation: image-scroll-reverse 20s linear infinite;
-  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .animate-image-scroll,
+  .animate-image-scroll-reverse {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
 }
 /* Shimmer */
 .shimmer {
@@ -63,18 +110,6 @@
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
-}
-
-/* Scroll */
-@keyframes scroll {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-.animate-scroll {
-  animation: scroll 12s linear infinite;
-}
-.animate-scroll-reverse {
-  animation: scroll 12s linear infinite reverse;
 }
 
 /* Disable on mobile */

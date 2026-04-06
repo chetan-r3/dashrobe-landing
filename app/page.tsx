@@ -25,13 +25,15 @@ export default async function Home() {
             alt="Dashrobe Logo"
             width={500}
             height={40}
+            priority
             className="object-contain h-8 lg:h-12 w-auto"
           />
         </div>
 
         {/* Ticker */}
         <div className="overflow-hidden bg-[#FFC100]">
-          <div className="flex w-max animate-marquee items-center">
+          <div className="flex w-max animate-marquee items-center pointer-events-none antialiased">
+            {/* Enough repeats so track width ≥ viewport; -50% loop needs an even count of identical segments */}
             {Array(6)
               .fill(0)
               .map((_, i) => (
@@ -44,12 +46,7 @@ export default async function Home() {
                       key={idx}
                       className="flex items-center gap-5 lg:gap-6 justify-center h-8 lg:h-10"
                     >
-                      <Image
-                        src="/sticker.png"
-                        alt="separator"
-                        width={30}
-                        height={30}
-                      />
+                      <span className="ticker-sticker" aria-hidden />
                       <span className="lg:text-xl font-semibold">{item}</span>
                     </span>
                   ))}
@@ -110,7 +107,7 @@ export default async function Home() {
         </div>
 
         {/* Right */}
-        <div className="basis-1/2 lg:flex-none w-fit h-full ml-auto overflow-hidden">
+        <div className="clip-motion-safe basis-1/2 lg:flex-none w-fit h-full ml-auto overflow-hidden">
           {/* MOBILE LAYOUT */}
           <div className="grid grid-cols-2 grid-rows-[1fr_1fr] gap-[16px] h-fit lg:hidden">
             <img
@@ -128,7 +125,7 @@ export default async function Home() {
           </div>
 
           {/* DESKTOP LAYOUT */}
-          <div className="overflow-hidden hidden lg:visible lg:grid lg:grid-cols-2 lg:gap-6 h-screen">
+          <div className="clip-motion-safe overflow-hidden hidden lg:visible lg:grid lg:grid-cols-2 lg:gap-6 h-screen">
             <div className="flex flex-col animate-image-scroll">
               <span className="my-3 w-[268px] h-full">
                 <img src="/img1.jpg" className="h-full object-cover" />
@@ -144,7 +141,7 @@ export default async function Home() {
               </span>
             </div>
 
-            <div className="flex flex-col space-y-6 animate-image-scroll-reverse">
+            <div className="flex flex-col animate-image-scroll-reverse">
               <span className="my-3 w-[268px] h-full">
                 <img src="/img3.jpg" className="h-full object-cover" />
               </span>
